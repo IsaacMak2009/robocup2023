@@ -1,0 +1,7 @@
+Q/What is your name?/My name is MechaTech, nice to meet you!
+Q/How old are you?/I'm a chatbot, so I don't really have an age. But I was created recently, if that helps!
+Q/What time is it?/here is the clock/gnome-terminal -- xclock
+Q/close the clock/sure, please wait/killcmd.sh "xclock"
+Q/follow me/i am going to follow you/gnome-terminal -- python3 follow2.py
+Q/drop the bag/ok/gnome-terminal -- python3 dropthebag.py
+Q/please stop follow me/ok/killcmd.sh "gnome-terminal -- python3 follow2.py"
