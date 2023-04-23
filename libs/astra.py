@@ -4,6 +4,7 @@ import cv2
 from cv_bridge import CvBridge
 from typing import *
 from sensor_msgs.msg import Image
+from Mlogger.mlogger import Logger
 
 
 class RosAstraCamera:
@@ -12,14 +13,15 @@ class RosAstraCamera:
         self.dep_topic = dep
         self.rgb = None
         self.dep = None
+        self.logger = Logger()
         if rgb or rgb is not None:
             rospy.Subscriber(self.rgb_topic, Image, self.callback_rgb)
-            print("[astra.py] waiting for rgb")
+            self.logger.info("[astra.py] waiting for rgb")
             rospy.wait_for_message(self.rgb_topic, Image)
 
         if dep or dep is not None:
             rospy.Subscriber(self.dep_topic, Image, self.callback_dep)
-            print("[astra.py] waiting for depth")
+            self.logger.info("[astra.py] waiting for depth")
             rospy.wait_for_message(self.dep_topic, Image)
         self.start_time = time.time()
 

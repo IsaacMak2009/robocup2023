@@ -3,6 +3,8 @@ import rospy
 import time
 from libs.robotarm import *
 
+# roslaunch open_manipulator_controller open_manipulator_controller.launch usb_port:=/dev/arm
+
 if __name__ == '__main__':
     rospy.init_node("robot_arm_demo")
 

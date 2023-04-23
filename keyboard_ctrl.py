@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 run = True
 speed = 0
 addspeed = 0.025
-maxspeed = 0.3
+maxspeed = 0.8
 esp = 0.05
 def iszero(f):
     return abs(f) < esp

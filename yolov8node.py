@@ -3,13 +3,19 @@ import rospy
 import cv2
 from libs.astra import RosAstraCamera as Camera
 from pcms.openvino_models import Yolov8
+from Mlogger.mlogger import logger
 
 if __name__ == '__main__':
     rospy.init_node("yolov8_node")
-    
+    logger.info("yolov8_node started!")
+
+    logger.info("loading camera")
     cam = Camera(dep=None)
-    model = Yolov8(model_name="yolov8n", device_name="GPU")
-    
+
+    logger.info("loading model")
+    model = Yolov8(model_name="v6best2", device_name="GPU")
+    model.classes = ["bag"]
+
     while not rospy.is_shutdown():
         rospy.Rate(20).sleep()
         ret, frame = cam.read()

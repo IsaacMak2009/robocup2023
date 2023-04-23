@@ -74,7 +74,7 @@ class Logger:
             colors.BrightBlack+time.ctime(),
             colors.Bold,
             colors.White+" [",
-            colors.BrightYellow+"DEBUG",
+            colors.BrightYellow+"WARN",
             colors.White+"]",
             colors.Reset+" - ",
             colors.Italic+msg,

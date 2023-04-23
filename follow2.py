@@ -64,12 +64,8 @@ if __name__ == "__main__":
             print(power)
             data = Twist()
             data.angular.z = power
-            if abs(cx-w/2) < 125 and depth[cy][cx] > 500:
-                data.linear.x = 0.20
-                moved = 3
-            elif moved != 0:
-                data.linear.x = 0.05 * moved
-                moved -= 1
+            if abs(cx-w/2) < 125 and depth[cy][cx] > 1000:
+                data.linear.x = 0.2
             publisher.publish(data)
         # show image
         cv2.imshow("frame", frame)
