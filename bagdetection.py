@@ -50,18 +50,17 @@ def on_voice(msg: Voice):
         publisher.publish(f"I am going to take the {dname} one now")
 
         # turn to bag
-        distance = xyz.length()/2.5
-        angle = -math.asin(xyz.x/distance)
+        distance = xyz.length()
+        angle = -math.atan2(xyz.x, xyz.z)
         logger.debug("angle: "+str(angle))
-        publisher.publish
         data = Twist()
         data.angular.z = angle
         turtlebot.publish(data)
-        rospy.sleep(1)
+        rospy.sleep(2)
 
         # move to the bag
         logger.debug("distance: "+str(distance))
-        for i in range(int(distance/7)):
+        for i in range(int(distance/6)):
             data = Twist()
             data.linear.x = 0.175
             turtlebot.publish(data)
