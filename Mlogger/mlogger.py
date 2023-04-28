@@ -121,6 +121,11 @@ class Logger:
                 return result
             except Exception as e:
                 self.error(f"Got error # {type(e).__name__}: {str(e)}")
+                tb = e.__traceback__
+                if tb is not None:
+                    self.error(f"File: {tb.tb_frame.f_code.co_filename}")
+                    self.error(f"Line: {tb.tb_frame.f_code.co_name}")
+                    self.error(f"In {tb.tb_lineno}")
         return warpper
                 
 

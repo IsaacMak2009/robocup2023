@@ -3,7 +3,7 @@ import rospy
 from geometry_msgs.msg import Twist
 
 rospy.init_node("controller")
-publisher = rospy.Publisher("/mobile_base/commands/velocity", Twist)
+publisher = rospy.Publisher("/cmd_vel", Twist)
 rospy.sleep(1)
 rospy.loginfo("turtlebot ok")
 pygame.init()
@@ -13,14 +13,14 @@ clock = pygame.time.Clock()
 run = True
 speed = 0
 addspeed = 0.025
-maxspeed = 0.8
+maxspeed = 0.2
 esp = 0.05
 def iszero(f):
     return abs(f) < esp
 keys = dict()
 while run:
-    clock.tick(20)
-    rospy.Rate(20).sleep()
+    clock.tick(10)
+    rospy.Rate(10).sleep()
     flag = True
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

@@ -42,8 +42,26 @@ def move_to(x, y, z, t):
         rospy.loginfo("%s" % e)
         return False
 
+def set_joints(joint1, joint2, joint3, joint4, t):
+    service_name = "/goal_joint_space_path"
+    rospy.wait_for_service(service_name)
+    
+    try:
+        service = rospy.ServiceProxy(service_name, SetJointPosition)
+        
+        request = SetJointPositionRequest()
+        request.joint_position.joint_name = ["joint1", "joint2", "joint3", "joint4"]
+        request.joint_position.position = [joint1, joint2, joint3, joint4]
+        request.path_time = t
+        
+        response = service(request)
+        return response
+    except Exception as e:
+        rospy.loginfo("%s" % e)
+        return False
+
 def open_gripper(t):
-    return set_gripper(0.01, t)
+    return set_gripper(0.005, t)
 
 def close_gripper(t):
-    return set_gripper(-0.01, t)
+    return set_gripper(-0.003, t)
